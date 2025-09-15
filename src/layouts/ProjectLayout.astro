@@ -1,0 +1,104 @@
+import { AstroFont } from "astro-font";
+        <AstroFont
+            config={[
+                {
+                    name: "Poppins",
+                    src: [
+                        {
+                            weight: "400",
+                            style: "normal",
+                            path: join(
+                                process.cwd(),
+                                "public",
+                                "fonts",
+                                "poppins-v20-latin-regular.woff2",
+                            ),
+                        },
+                    ],
+                    preload: true,
+                    display: "swap",
+                    fallback: "serif",
+                    cssVariable: "astro-font-poppins",
+                },
+                {
+                    name: "Satisfy",
+                    src: [
+                        {
+                            weight: "400",
+                            style: "normal",
+                            path: join(
+                                process.cwd(),
+                                "public",
+                                "fonts",
+                                "satisfy-v17-latin-regular.woff2",
+                            ),
+                        },
+                    ],
+                    preload: true,
+                    display: "swap",
+                    fallback: "serif",
+                    cssVariable: "astro-font-satisfy",
+                },
+                {
+                    name: "Ubuntu",
+                    src: [
+                        {
+                            weight: "700",
+                            style: "normal",
+                            path: join(
+                                process.cwd(),
+                                "public",
+                                "fonts",
+                                "ubuntu-v20-latin-700.woff2",
+                            ),
+                        },
+                    ],
+                    preload: true,
+                    display: "swap",
+                    fallback: "serif",
+                    cssVariable: "astro-font-ubuntu",
+                },
+                {
+                    name: "Orbitron",
+                    src: [
+                        {
+                            weight: "700",
+                            style: "normal",
+                            path: join(
+                                process.cwd(),
+                                "public",
+                                "fonts",
+                                "Orbitron-VariableFont_wght.ttf",
+                            ),
+                        },
+                    ],
+                    preload: true,
+                    display: "swap",
+                    fallback: "serif",
+                    cssVariable: "astro-font-orbitron",
+                },
+                {
+                    name: "Grotesk",
+                    src: [
+                        {
+                            weight: "400",
+                            style: "normal",
+                            path: join(
+                                process.cwd(),
+                                "public",
+                                "fonts",
+                                "Oxanium-VariableFont_wght.ttf",
+                            ),
+                        },
+                    ],
+                    preload: true,
+                    display: "swap",
+                    fallback: "serif",
+                    cssVariable: "astro-font-grotesk",
+                },
+            ]}
+        />
+        <main class="px-6 md:px-8">
+            <slot />
+        </main>
+        <script src="../script.ts"></script>

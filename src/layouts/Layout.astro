@@ -1,3 +1,4 @@
+import { AstroFont } from "astro-font";
 <!doctype html>
 <html lang="en">
 	<head>
@@ -6,9 +7,201 @@
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 		<title>Astro Basics</title>
+		<AstroFont
+			config={[
+				{
+					name: "Poppins",
+					src: [
+						{
+							weight: "400",
+							style: "normal",
+							path: join(
+								process.cwd(),
+								"public",
+								"fonts",
+								"poppins-v20-latin-regular.woff2",
+							),
+						},
+					],
+					preload: true,
+					display: "swap",
+					fallback: "serif",
+					cssVariable: "astro-font-poppins",
+				},
+				{
+					name: "Satisfy",
+					src: [
+						{
+							weight: "400",
+							style: "normal",
+							path: join(
+								process.cwd(),
+								"public",
+								"fonts",
+								"satisfy-v17-latin-regular.woff2",
+							),
+						},
+					],
+					preload: true,
+					display: "swap",
+					fallback: "serif",
+					cssVariable: "astro-font-satisfy",
+				},
+				{
+					name: "Ubuntu",
+					src: [
+						{
+							weight: "700",
+							style: "normal",
+							path: join(
+								process.cwd(),
+								"public",
+								"fonts",
+								"ubuntu-v20-latin-700.woff2",
+							),
+						},
+					],
+					preload: true,
+					display: "swap",
+					fallback: "serif",
+					cssVariable: "astro-font-ubuntu",
+				},
+				{
+					name: "Orbitron",
+					src: [
+						{
+							weight: "700",
+							style: "normal",
+							path: join(
+								process.cwd(),
+								"public",
+								"fonts",
+								"Orbitron-VariableFont_wght.ttf",
+							),
+						},
+					],
+					preload: true,
+					display: "swap",
+					fallback: "serif",
+					cssVariable: "astro-font-orbitron",
+				},
+				{
+					name: "Grotesk",
+					src: [
+						{
+							weight: "400",
+							style: "normal",
+							path: join(
+								process.cwd(),
+								"public",
+								"fonts",
+								"Oxanium-VariableFont_wght.ttf",
+							),
+						},
+					],
+					preload: true,
+					display: "swap",
+					fallback: "serif",
+					cssVariable: "astro-font-grotesk",
+				},
+			]}
+		/>
+
+		<style is:global>
+			:root {
+				--base: #000000;
+				--baseLite: rgba(0, 0, 0, 0.85);
+				--text: hsl(0, 0%, 100%);
+
+				--pH: 45.12;
+				--pS: 100%;
+				--pL: 75.49019607843137%;
+
+				--sH: 0;
+				--sS: 0%;
+				--sL: 100%;
+
+				--mH: 275;
+				--mS: 100%;
+				--mL: 47%;
+				--primary: var(--pH), var(--pS), var(--pL);
+				--secondary: var(--sH), var(--sS), var(--sL);
+				--mixColor: var(--mH), var(--mS), var(--mL);
+				--gradient: linear-gradient(
+					to right,
+					hsl(var(--secondary)),
+					hsl(var(--primary)),
+					hsl(var(--primary)),
+					hsl(var(--secondary))
+				);
+				--heroSocialColor: #fff;
+			}
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+
+			html {
+				font-family: Grotesk !important;
+			}
+
+			body {
+				background-color: var(--base);
+				color: var(--text);
+			}
+			/* Lenis Smooth Scroll */
+			html.lenis {
+				height: auto;
+			}
+
+			.lenis.lenis-smooth {
+				scroll-behavior: auto !important;
+			}
+
+			.lenis.lenis-smooth [data-lenis-prevent] {
+				overscroll-behavior: contain;
+			}
+
+			.lenis.lenis-stopped {
+				overflow: hidden;
+			}
+
+			.lenis.lenis-scrolling iframe {
+				pointer-events: none;
+			}
+
+			/* GSAP Animation inits */
+			.flex_center {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+			}
+
+			.gradientText {
+				background: var(--gradient);
+				background-clip: text;
+				-webkit-background-clip: text;
+				color: transparent;
+				background-size: 200%;
+				animation: gradientPan 5s linear infinite;
+				will-change: background-position;
+			}
+
+			.Fade_Stagger,
+			.Fade_Up {
+				opacity: 0;
+				transform: translateY(50);
+			}
+			.Spring_Up {
+				opacity: 0;
+				scale: 0.75;
+			}
+		</style>
 	</head>
 	<body>
 		<slot />
+		<script src="../script.ts"></script>
 	</body>
 </html>
 
