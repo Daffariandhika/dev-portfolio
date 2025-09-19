@@ -1,0 +1,241 @@
+---
+export function getStaticPaths() {
+    return [
+        { params: { projectID: "readuniverse" } },
+        { params: { projectID: "payrollku" } },
+        { params: { projectID: "goodreads-scraper" } },
+    ];
+}
+const { projectID } = Astro.params;
+
+import { Image } from "astro:assets";
+import { ProjectLayout } from "../../layouts";
+import { CheckIcon, ClipboardCopyIcon, ExternalLinkIcon } from "lucide-preact";
+import { SectionTitle } from "../../components/UI";
+import { ProjectLogo } from "../../assets/Icons";
+
+// Lazy loading ProjectInfo
+const ProjectInfo = import("../../utils/ProjectsList");
+const { ProjectsList } = await ProjectInfo;
+const [project] = ProjectsList.filter(
+    (itm) => itm.Name.replaceAll(" ", "-").toLowerCase() === projectID,
+);
+---
+
+<ProjectLayout title=`${project.Name}` description={project.ShortDesc}>
+    <div class="Fade_In flex_center absolute inset-0 w-full h-full z-[-1]">
+        <Image
+            src={project.Shot}
+            alt={`${project.Name}_BG_Image`}
+            class="w-full h-full opacity-50 blur-md p-6 object-cover"
+            loading="eager"
+        />
+        <div class="bg-imgOverlayGradient w-full h-full absolute inset-0"></div>
+    </div>
+
+    <div class="flex_center flex-col gap-4 py-4">
+        <Image
+            src={ProjectLogo}
+            alt={`${project.Name}_Image`}
+            class="Fade_Up"
+            width={100}
+            height={100}
+            loading="eager"
+        />
+
+        <h1
+            class="Fade_Up font-orbitron text-[1.6em] md:text-[1.8em] text-center"
+        >
+            {project.Name}
+        </h1>
+
+        <div class="flex_center gap-4 text-[1em]">
+            <a
+                href={project.Source}
+                target="_blank"
+                rel="author"
+                class="Fade_Stagger flex_center gap-2 PrimaryBtn px-4 py-2 rounded"
+            >
+                <svg
+                    stroke="currentColor"
+                    fill="currentColor"
+                    stroke-width="0"
+                    viewBox="0 0 16 16"
+                    color="#fff"
+                    height="24"
+                    width="24"
+                    xmlns="http://www.w3.org/2000/svg"
+                    style="color: var(--textButton);"
+                >
+                    <path
+                        d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"
+                    >
+                    </path>
+                </svg>
+                <span> Source Code </span>
+            </a>
+
+            <a
+                href={project.Link}
+                target="_blank"
+                rel="noreferrer"
+                class="Fade_Stagger flex_center gap-2 PrimaryBtn px-4 py-2 rounded"
+            >
+                <ExternalLinkIcon />
+                <span> Live Demo </span>
+            </a>
+        </div>
+    </div>
+
+    <div
+        class="flex Fade_Stagger justify-center items-center xl:items-start flex-col xl:flex-row gap-4 pb-10 pt-6"
+    >
+        <!-- Mock Up Image -->
+
+        <!-- <Image
+            src={project.Mockup}
+            alt={`${project.Name}_Mockup_Image`}
+            width={600}
+            class="Fade_Up h-[280px] aspect-auto"
+            loading="eager"
+        /> -->
+
+        <!-- Demo Credential -->
+
+        <!-- {project.Demo && (
+                <div class="w-full max-w-md mx-auto xl:mt-6 lg:mt-2 px-3 py-4 bg-skillGradientAlt rounded-md flex flex-col gap-2">
+
+                    <h3 class="tracking-widest text-lg font-semibold text-center smallCaps">
+                        Demo Credential
+                    </h3>
+
+                    <div class="flex flex-col gap-3">
+                        <div class="flex items-center justify-between bg-backgroundLite p-3 rounded-lg shadow-sm">
+                            <div class="flex flex-col">
+                                <span class="text-xs uppercase tracking-widest font-orbitron">
+                                    Email
+                                </span>
+                                <span
+                                    id="emailContent"
+                                    class="break-all font-medium text-sm font-poppins"
+                                >
+                                    {project.Demo?.email}
+                                </span>
+                            </div>
+
+                            <button
+                                id="emailCopyBtn"
+                                class="flex_center relative ml-3 p-2 rounded-md hover:bg-skillGradient transition-colors"
+                            >
+                                <ClipboardCopyIcon class="emailCopyIcon visible w-4 h-4" />
+                                <CheckIcon class="emailCopyIcon absolute invisible w-4 h-4 text-green-500" />
+                            </button>
+                        </div>
+
+                        <div class="flex items-center justify-between bg-backgroundLite p-3 rounded-lg shadow-sm">
+                            <div class="flex flex-col">
+                                <span class="text-xs uppercase tracking-widest font-orbitron">
+                                    Password
+                                </span>
+                                <span
+                                    id="passContent"
+                                    class="break-all font-medium text-sm font-poppins"
+                                >
+                                    {project.Demo?.password}
+                                </span>
+                            </div>
+
+                            <button
+                                id="passCopyBtn"
+                                class="flex_center relative ml-3 p-2 rounded-md hover:bg-skillGradient transition-colors"
+                            >
+                                <ClipboardCopyIcon class="passCopyIcon visible w-4 h-4" />
+                                <CheckIcon class="passCopyIcon absolute invisible w-4 h-4 text-green-500" />
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )} -->
+
+        <p
+            class="w-full text-justify text-[1em] mt-4 px-4 indent-12 font-poppins"
+        >
+            {project.Desc}
+        </p>
+    </div>
+
+    <SectionTitle title="Features" color="primary" align="right">
+        <div
+            class="grid grid-cols-1 md:grid-cols-2 gap-y-4 md:gap-y-6 md:gap-x-10 md:mx-4"
+        >
+            {
+                project.features.map((feature) => (
+                    <div class="Fade_Up p-4 md:p-6 flex flex-col gap-3 bg-skillGradientAlt rounded-xl">
+                        <span class="font-orbitron smallCaps tracking-wide text-base md:text-lg font-semibold">
+                            {feature.title}
+                        </span>
+                        <p class="text-sm leading-relaxed font-poppins line-clamp-2">
+                            {feature.description}
+                        </p>
+                    </div>
+                ))
+            }
+        </div>
+    </SectionTitle>
+
+    <SectionTitle title="Tech Stack" align="left" color="primary" />
+    <div
+        class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 p-2 mb-96 4xl:mb-[30rem]"
+    >
+        {
+            project.Tech.map((tech) => (
+                <div class="Fade_Stagger flex_center flex-col gap-4 p-4 bg-skillGradientAlt rounded-md">
+                    <div class="flex_center gap-2">
+                        <Image
+                            src={tech.icon}
+                            alt={tech.title}
+                            width={20}
+                            height={20}
+                        />
+                        <span class="text-[0.8em] tracking-wide font-orbitron smallCaps">
+                            {tech.title}
+                        </span>
+                    </div>
+                </div>
+            ))
+        }
+    </div>
+</ProjectLayout>
+
+<script is:inline type="module">
+    const emailCopyBtn = document.getElementById("emailCopyBtn");
+    const passCopyBtn = document.getElementById("passCopyBtn");
+    const emailContent = document.getElementById("emailContent");
+    const passContent = document.getElementById("passContent");
+    const emailCopyIcons = document.querySelectorAll(".emailCopyIcon");
+    const passCopyIcons = document.querySelectorAll(".passCopyIcon");
+
+    emailCopyBtn?.addEventListener("click", () => {
+        navigator.clipboard.writeText(emailContent?.textContent);
+
+        emailCopyIcons[0].classList.replace("visible", "invisible");
+        emailCopyIcons[1].classList.replace("invisible", "visible");
+
+        setTimeout(() => {
+            emailCopyIcons[0].classList.replace("invisible", "visible");
+            emailCopyIcons[1].classList.replace("visible", "invisible");
+        }, 2000);
+    });
+
+    passCopyBtn?.addEventListener("click", () => {
+        navigator.clipboard.writeText(passContent?.textContent);
+
+        passCopyIcons[0].classList.replace("visible", "invisible");
+        passCopyIcons[1].classList.replace("invisible", "visible");
+
+        setTimeout(() => {
+            passCopyIcons[0].classList.replace("invisible", "visible");
+            passCopyIcons[1].classList.replace("visible", "invisible");
+        }, 2000);
+    });
+</script>

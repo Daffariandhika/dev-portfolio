@@ -1,12 +1,58 @@
+---
+import { SEO } from "astro-seo";
 import { AstroFont } from "astro-font";
+import { join } from "node:path";
+import { Header, MobileHeader, Cursor } from "../components/UI";
+import { Footer } from "../components";
+---
+
 <!doctype html>
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
+		<meta name="theme-color" content="#000" />
+		<meta name="robots" content="index, follow" />
+		<meta name="google-site-verification" content="" />
+		<meta name="author" content="DaffaRiandhika" />
+		<meta name="publisher" content="DaffaRiandhika" />
+		<link rel="manifest" href="/manifest.json" />
+
+		<!-- Preload CSS Styles -->
+		<link rel="preload stylesheet" href="/styles/global.css" as="style" />
+		<link rel="preload stylesheet" href="/styles/utility.css" as="style" />
+		<link rel="preload stylesheet" href="/styles/cursor.css" as="style" />
+
+		<SEO
+			title="DaffaRiandhika | MERN Stack Developer"
+			description="Specializing in building digital solutions that drive growth."
+			canonical="https://daffaRiandhika.netlify.app/"
+			openGraph={{
+				basic: {
+					title: "DaffaRiandhika | MERN Stack Developer",
+					type: "website",
+					image: "./",
+					url: "https://daffariandhika.netlify.app/",
+				},
+			}}
+			extend={{
+				link: [
+					{ rel: "icon", type: "image/png", href: "/favicon.png" },
+					{
+						rel: "shortcut",
+						type: "image/png",
+						href: "/favicon.png",
+					},
+					{
+						rel: "apple-touch-icon",
+						type: "image/png",
+						href: "/favicon.png",
+					},
+				],
+			}}
+		/>
+
 		<AstroFont
 			config={[
 				{
@@ -27,44 +73,6 @@ import { AstroFont } from "astro-font";
 					display: "swap",
 					fallback: "serif",
 					cssVariable: "astro-font-poppins",
-				},
-				{
-					name: "Satisfy",
-					src: [
-						{
-							weight: "400",
-							style: "normal",
-							path: join(
-								process.cwd(),
-								"public",
-								"fonts",
-								"satisfy-v17-latin-regular.woff2",
-							),
-						},
-					],
-					preload: true,
-					display: "swap",
-					fallback: "serif",
-					cssVariable: "astro-font-satisfy",
-				},
-				{
-					name: "Ubuntu",
-					src: [
-						{
-							weight: "700",
-							style: "normal",
-							path: join(
-								process.cwd(),
-								"public",
-								"fonts",
-								"ubuntu-v20-latin-700.woff2",
-							),
-						},
-					],
-					preload: true,
-					display: "swap",
-					fallback: "serif",
-					cssVariable: "astro-font-ubuntu",
 				},
 				{
 					name: "Orbitron",
@@ -124,9 +132,45 @@ import { AstroFont } from "astro-font";
 				--mH: 275;
 				--mS: 100%;
 				--mL: 47%;
+
+				/* --primary: 264, 100%, 50%;
+				--secondary: 315, 100%, 50%;
+				--mixColor: 275, 100%, 47%; */
+
 				--primary: var(--pH), var(--pS), var(--pL);
 				--secondary: var(--sH), var(--sS), var(--sL);
 				--mixColor: var(--mH), var(--mS), var(--mL);
+
+				--primaryLite: hsla(var(--primary), 0.6);
+				--primaryLiteAlt: hsla(var(--primary), 0.3);
+				--secondaryLite: hsla(var(--secondary), 0.6);
+				--secondaryLiteAlt: hsla(var(--secondary), 0.3);
+
+				--footer: hsl(45.12, 60%, 55%);
+				--footerSvgA: hsl(45.12, 80%, 65%);
+				--footerSvgB: hsl(45.12, 100%, 75%);
+
+				--textButton: #000;
+				--inputBackground: #0a0a0a;
+
+				--shadowOne: rgba(255, 255, 255, 0.1);
+				--shadowTwo: rgba(17, 17, 17, 0.25);
+				--shadowThree: rgba(0, 0, 0, 0.3);
+
+				--inputShadowOne: rgb(0, 0, 0);
+				--inputShadowTwo: rgba(0, 0, 0, 0.5);
+
+				--adv-btn-bg-start: hsla(var(--primary));
+				--adv-btn-bg-end: hsla(var(--primary));
+				--adv-btn-text-color: var(--textButton);
+				--adv-glow-color: rgba(26, 26, 26, 0.7);
+				--adv-strong-glow-color: rgba(10, 10, 10, 0.5);
+				--adv-shadow-color-light: rgba(0, 0, 0, 0.3);
+				--adv-shadow-color-dark: rgba(0, 0, 0, 0.5);
+				--adv-shine-color: rgba(255, 255, 255, 0.7);
+				--adv-transition-base: 0.25s;
+				--adv-transition-bounce: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
 				--gradient: linear-gradient(
 					to right,
 					hsl(var(--secondary)),
@@ -134,8 +178,175 @@ import { AstroFont } from "astro-font";
 					hsl(var(--primary)),
 					hsl(var(--secondary))
 				);
+				--gradientLite: linear-gradient(
+					45deg,
+					var(--primaryLite),
+					hsl(var(--secondaryLite))
+				);
+
+				--headerGradient: linear-gradient(
+					180deg,
+					rgba(0, 0, 0, 0.6),
+					transparent
+				);
+				--cardGradient: linear-gradient(#111, #111);
+				--cardGradientAlt: linear-gradient(
+					-135deg,
+					hsl(0, 0%, 5%),
+					var(--primaryLiteAlt)
+				);
+				--miscCardGradient: linear-gradient(
+					-45deg,
+					hsl(0, 0%, 1%),
+					var(--primaryLiteAlt)
+				);
+				--overlayGradient: radial-gradient(
+					farthest-corner at 100% 0%,
+					hsla(0, 0%, 5%, 0.5),
+					transparent
+				);
+				--LinkBtnGradient: linear-gradient(-135deg, #111, #111);
+				--SkillGradient: linear-gradient(-135deg, #111, #111);
+				--SkillGradientAlt: linear-gradient(-135deg, #111, #111);
+				--orbitGradient: conic-gradient(
+					transparent,
+					transparent,
+					hsl(var(--primary)),
+					hsl(var(--secondary)),
+					#fff
+				);
+				--orbitGradientAlt: conic-gradient(
+					#fff,
+					hsl(var(--primary)),
+					hsl(var(--secondary)),
+					transparent,
+					transparent
+				);
+
+				--orbitDotColor: hsla(var(--primary));
 				--heroSocialColor: #fff;
+				--contactSocialColor: hsla(0, 0%, 100%, 0.4);
+
+				--cursorColor: hsla(var(--primary), 0.6);
+				--cursorColorAlt: hsla(var(--primary), 0.6);
+				--dotColor: hsla(var(--primary));
 			}
+
+			html.light {
+				--base: #fff;
+				--baseLite: rgba(255, 255, 255, 0.85);
+				--text: #000;
+
+				--pH: 240;
+				--pS: 8%;
+				--pL: 10%;
+
+				--sH: 0;
+				--sS: 0%;
+				--sL: 36%;
+
+				--mH: 275;
+				--mS: 100%;
+				--mL: 47%;
+
+				/* --pH: 240;
+				--pS: 60%;
+				--pL: 35%;
+
+				--sH: 190;
+				--sS: 80%;
+				--sL: 50%;
+
+				--mH: 200;
+				--mS: 80%;
+				--mL: 60%; */
+
+				/* --primary: 264, 100%, 50%;
+				--secondary: 315, 100%, 50%;
+				--mixColor: 275, 100%, 47%; */
+
+				--textButton: #fff;
+				--inputBackground: #e4e5f1;
+
+				--shadowOne: rgba(228, 229, 241, 0.1);
+				--shadowTwo: rgba(0, 0, 0, 0.25);
+				--shadowThree: rgba(0, 0, 0, 0.3);
+
+				--inputShadowOne: rgb(147, 148, 165);
+				--inputShadowTwo: rgba(147, 148, 165, 0.5);
+
+				--primary: var(--pH), var(--pS), var(--pL);
+				--secondary: var(--sH), var(--sS), var(--sL);
+				--mixColor: var(--mH), var(--mS), var(--mL);
+
+				--primaryLite: hsla(var(--primary), 0.6);
+				--primaryLiteAlt: hsla(var(--primary), 0.3);
+				--secondaryLite: hsla(var(--secondary), 0.6);
+				--secondaryLiteAlt: hsla(var(--secondary), 0.3);
+
+				--footer: hsl(var(--pH), var(--pS), 75%);
+				--footerSvgA: hsl(var(--pH), var(--pS), 85%);
+				--footerSvgB: hsl(var(--pH), var(--pS), 90%);
+
+				--gradient: linear-gradient(
+					to right,
+					hsl(var(--secondary)),
+					hsl(var(--primary)),
+					hsl(var(--primary)),
+					hsl(var(--secondary))
+				);
+				--gradientLite: linear-gradient(
+					45deg,
+					var(--primaryLite),
+					hsl(var(--secondaryLite))
+				);
+
+				--headerGradient: linear-gradient(
+					180deg,
+					rgba(255, 255, 255, 0.6),
+					transparent
+				);
+				--cardGradient: linear-gradient(45deg, #d2d3db, #d2d3db);
+				--cardGradientAlt: linear-gradient(
+					-135deg,
+					var(--primaryLiteAlt),
+					hsl(0, 0%, 100%)
+				);
+				--miscCardGradient: linear-gradient(
+					-45deg,
+					var(--primaryLiteAlt),
+					hsl(0, 0%, 100%)
+				);
+				--overlayGradient: radial-gradient(
+					farthest-corner at 100% 0%,
+					hsla(0, 0%, 100%, 0.5),
+					transparent
+				);
+				--LinkBtnGradient: linear-gradient(-135deg, #d2d3db, #d2d3db);
+				--SkillGradient: linear-gradient(-135deg, #d2d3db, #d2d3db);
+				--SkillGradientAlt: linear-gradient(-135deg, #d2d3db, #d2d3db);
+				--orbitGradient: conic-gradient(
+					transparent,
+					transparent,
+					hsl(var(--secondary)),
+					hsl(var(--primary))
+				);
+				--orbitGradientAlt: conic-gradient(
+					hsl(var(--primary)),
+					hsl(var(--secondary)),
+					transparent,
+					transparent
+				);
+
+				--orbitDotColor: hsla(var(--primary));
+				--heroSocialColor: hsl(0, 0%, 20%);
+				--contactSocialColor: hsla(0, 0%, 20%, 0.4);
+
+				--cursorColor: hsla(var(--primary), 0.6);
+				--cursorColorAlt: hsla(var(--primary), 0.6);
+				--dotColor: hsla(var(--primary));
+			}
+
 			* {
 				margin: 0;
 				padding: 0;
@@ -150,6 +361,245 @@ import { AstroFont } from "astro-font";
 				background-color: var(--base);
 				color: var(--text);
 			}
+
+			/* Header */
+			.Header_Nav a {
+				position: relative;
+				overflow: hidden;
+				letter-spacing: 1px;
+			}
+
+			.Header_Nav a.active {
+				color: hsl(var(--primary));
+			}
+
+			.Header_Nav a::after {
+				content: "";
+				position: absolute;
+				bottom: 0;
+				left: 0;
+				width: 100%;
+				height: 2px;
+				background-image: linear-gradient(
+					to right,
+					transparent,
+					hsl(var(--primary)),
+					transparent
+				);
+				transform: scaleX(0);
+				transition: transform 0.25s ease-out;
+			}
+
+			.Header_Nav a.active::after {
+				transform: scaleX(1);
+			}
+
+			/* Action Button Style */
+			.Header_ActionBtn {
+				position: relative;
+				border-radius: 0.2em;
+				overflow: hidden;
+				display: grid;
+				place-items: center;
+			}
+
+			.Header_ActionBtn::after {
+				content: "";
+				position: absolute;
+				width: 120%;
+				aspect-ratio: 1;
+				background: conic-gradient(
+					hsl(var(--primary)),
+					hsl(var(--secondary)),
+					hsl(var(--primary))
+				);
+				animation: spin 5s linear infinite;
+			}
+
+			.Header_ActionBtn > div {
+				padding: 0.2em 1.35em;
+				background-color: var(--base);
+				color: var(--text);
+				border-radius: inherit;
+				margin: 2px;
+				z-index: 2;
+			}
+
+			/* Mobile Header Nav */
+			.MobileHeader_Nav {
+				min-width: 14em;
+				text-align: center;
+				background-image: var(--LinkBtnGradient);
+				border-radius: 0.3em;
+				padding: 0.5em;
+				font-size: 1em;
+				font-weight: 700;
+				letter-spacing: 1px;
+			}
+
+			.MobileHeader_Nav a {
+				width: 100%;
+				text-decoration: none;
+				text-transform: uppercase;
+			}
+
+			.MobileHeader_Nav a.active {
+				background: var(--gradient);
+				background-clip: text;
+				-webkit-background-clip: text;
+				color: transparent;
+				background-size: 200%;
+				animation: gradientPan 5s linear infinite;
+			}
+
+			:has(.MobileHeader_ActionBtn).MobileHeader_Nav {
+				padding: 0;
+			}
+
+			/* Page Title Style */
+			.Title-Tag {
+				font-family: Orbitron;
+				font-variant: small-caps;
+			}
+
+			.Title-Tag span,
+			.Title-Tag p {
+				z-index: 1;
+				background-color: var(--base);
+				padding-inline: 0.25em;
+			}
+
+			.Title-Tag.open {
+				margin-bottom: 1em;
+				justify-content: flex-start;
+			}
+
+			.Title-Tag.close {
+				justify-content: flex-end;
+				margin-bottom: 1em;
+			}
+
+			.Title-Tag.primary span {
+				color: hsl(var(--primary));
+			}
+
+			.Title-Tag.secondary span {
+				color: hsl(var(--secondary));
+			}
+
+			.Title_Line::after {
+				content: "";
+				position: absolute;
+				margin-top: 0.3em;
+				width: 100%;
+				height: 5px;
+				z-index: 0;
+				background-image: linear-gradient(
+					to right,
+					hsl(var(--primary)),
+					transparent
+				);
+			}
+
+			.Title_Line_Right::after {
+				content: "";
+				position: absolute;
+				margin-top: 0.3em;
+				width: 100%;
+				height: 5px;
+				z-index: 0;
+				background-image: linear-gradient(
+					to right,
+					transparent,
+					hsl(var(--primary))
+				);
+			}
+
+			.Title_Line_Center::after {
+				content: "";
+				position: absolute;
+				margin-top: 0.3em;
+				width: 100%;
+				height: 5px;
+				z-index: 0;
+				background-image: linear-gradient(
+					to right,
+					transparent,
+					hsl(var(--primary)),
+					transparent
+				);
+			}
+
+			.Title_Line.secondary::after {
+				background-color: var(--secondaryLite);
+			}
+
+			.Title_Line.close::after {
+				background-color: transparent;
+			}
+
+			/* Mobile Ham Menu Animation --> */
+			.MobileNav_Ham {
+				-webkit-tap-highlight-color: transparent;
+				transition: transform 0.4s;
+				user-select: none;
+			}
+
+			.MobileNav_Ham .line {
+				fill: none;
+				transition:
+					stroke-dasharray 0.4s,
+					stroke-dashoffset 0.4s;
+				stroke: var(--text);
+				stroke-width: 5.5;
+				transform-origin: right;
+				stroke-linecap: round;
+			}
+
+			html.light .MobileNav_Ham .line {
+				stroke: hsl(var(--primary)) !important;
+			}
+
+			.MobileNav_Ham .top {
+				stroke-dasharray: 18 160;
+			}
+
+			.MobileNav_Ham .middle {
+				stroke-dasharray: 40 142;
+				transform-origin: 83% 83%;
+				transition: transform 0.4s;
+			}
+
+			.MobileNav_Ham .bottom {
+				stroke-dasharray: 18 85;
+				transform-origin: 50%;
+				transition:
+					transform 0.4s,
+					stroke-dashoffset 0.4s;
+			}
+
+			.Projects_Link {
+				padding: 0.45em;
+				border: 1px solid var(--primaryLite);
+				border-radius: 100%;
+				z-index: 10;
+			}
+
+			/* Cursor */
+			.Cursor-Main {
+				position: absolute;
+				width: 100%;
+				height: 100%;
+				inset: 0;
+				z-index: 9999;
+				overflow: hidden;
+				pointer-events: none;
+			}
+
+			footer {
+				color: #fff !important;
+			}
+
 			/* Lenis Smooth Scroll */
 			html.lenis {
 				height: auto;
@@ -193,23 +643,169 @@ import { AstroFont } from "astro-font";
 				opacity: 0;
 				transform: translateY(50);
 			}
+
+			.Fade_Down {
+				opacity: 0;
+				transform: translateY(-50);
+			}
+
+			.Fade_In {
+				opacity: 0;
+			}
+
 			.Spring_Up {
 				opacity: 0;
 				scale: 0.75;
 			}
+
+			.PrimaryBtn {
+				position: relative;
+				display: flex;
+				flex-direction: row;
+				padding: 0.5em 1em;
+				border: none;
+				border-radius: 0.4em;
+				background: linear-gradient(
+					60deg,
+					var(--adv-btn-bg-start),
+					var(--adv-btn-bg-end)
+				);
+				background-size: 200% 200%;
+				background-position: 50% 50%;
+				color: var(--adv-btn-text-color);
+				font-weight: 700;
+				font-size: 1em;
+				font-family: "Orbitron", sans-serif;
+				font-variant: small-caps;
+				letter-spacing: 1px;
+				cursor: pointer;
+				overflow: hidden;
+				outline: none;
+				z-index: 1;
+				backface-visibility: hidden;
+				box-shadow:
+					0em 0.2em 0.4em var(--adv-shadow-color-light),
+					0em 0.4em 0.8em var(--adv-shadow-color-dark),
+					inset 0px 1px 1px rgba(255, 255, 255, 0.15);
+				transition:
+					transform var(--adv-transition-base) var(--adv-transition-bounce),
+					box-shadow var(--adv-transition-base) ease-out,
+					background-position 1s ease;
+			}
+
+			.PrimaryBtn::before,
+			.PrimaryBtn::after {
+				content: "";
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				border-radius: inherit;
+				z-index: 1;
+				pointer-events: none;
+				transition:
+					opacity 0.4s ease-out,
+					background-position 0.8s ease;
+			}
+
+			.PrimaryBtn::before {
+				background: linear-gradient(
+					115deg,
+					transparent 25%,
+					var(--adv-shine-color) 50%,
+					transparent 75%
+				);
+				background-size: 250% 100%;
+				background-position: 180% 0;
+				opacity: 0;
+				z-index: 2;
+			}
+
+			.PrimaryBtn:hover {
+				animation: bg-pan 3s linear infinite;
+			}
+
+			.PrimaryBtn:hover::before {
+				background-position: -80% 0;
+			}
+
+			.PrimaryBtn:active {
+				transform: scale(0.95, 0.92);
+				box-shadow:
+					0em 0.1em 0.2em var(--adv-shadow-color-light),
+					0em 0.2em 0.4em var(--adv-shadow-color-dark),
+					inset 0px 1px 1px rgba(255, 255, 255, 0.1),
+					0 0 1em var(--adv-glow-color),
+					0 0 2em var(--adv-strong-glow-color);
+				animation: none;
+			}
+
+			.PrimaryBtn:hover::before {
+				background: none;
+				opacity: 1;
+				content: attr(data-text);
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				padding: inherit;
+				box-sizing: border-box;
+				font-size: inherit;
+				font-weight: inherit;
+				text-transform: inherit;
+				letter-spacing: inherit;
+				font-family: inherit;
+				text-shadow: none;
+				z-index: 3;
+			}
+
+			.PrimaryBtn:focus-visible {
+				box-shadow:
+					0em 0.25em 0.5em var(--adv-shadow-color-light),
+					0em 0.5em 1.25em var(--adv-shadow-color-dark),
+					inset 0px 1px 1px rgba(255, 255, 255, 0.15),
+					0 0 1.5em var(--adv-glow-color);
+			}
+
+			.smallCaps {
+				font-variant: small-caps;
+			}
+
+			@keyframes bg-pan {
+				0% {
+					background-position: 0% 50%;
+				}
+
+				50% {
+					background-position: 100% 50%;
+				}
+
+				100% {
+					background-position: 0% 50%;
+				}
+			}
+
+			@keyframes spin {
+				0% {
+					rotate: 0deg;
+				}
+
+				100% {
+					rotate: 360deg;
+				}
+			}
 		</style>
 	</head>
-	<body>
-		<slot />
+	<body id="home">
+		<Header />
+		<MobileHeader />
+
+		<main>
+			<slot />
+		</main>
+
+		<Footer />
+		<Cursor />
 		<script src="../script.ts"></script>
 	</body>
 </html>
-
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-</style>

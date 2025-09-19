@@ -1,0 +1,148 @@
+---
+import {
+    ExternalLinkIcon,
+    WrenchIcon,
+    PanelsRightBottomIcon,
+    CheckCircleIcon,
+    FlaskConicalIcon,
+} from "lucide-preact";
+
+import { SectionTitle } from "./UI";
+import { Image } from "astro:assets";
+
+// Lazy loading ProjectInfo
+const ProjectInfo = import("../utils/ProjectsList");
+const { ProjectsList } = await ProjectInfo;
+---
+
+<section
+    id="projects"
+    class="w-full min-h-screen px-6 py-4 pt-14 bg-background"
+>
+    <SectionTitle title="Projects" color="primary" align="right">
+        <div
+            class="Fade_Up relative w-full grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8 lg:px-12 pb-6"
+        >
+            {
+                ProjectsList?.map((project) => {
+                    if (project?.hideProject) return;
+
+                    return (
+                        <div class="Project_Stagger Card_Main w-full h-fit flex flex-col bg-cardGradient overflow-hidden rounded-xl mt-3">
+                            <a
+                                href={`/projects/${project?.Name.replaceAll(" ", "-").toLowerCase()}`}
+                                class="Projects_Preview w-full relative overflow-hidden rounded-t-xl group"
+                            >
+                                {/* Project Image */}
+                                <Image
+                                    class="bg-cover w-full"
+                                    src={project.Shot}
+                                    alt={`Project_ScreenShot_${project.Name}`}
+                                    widths={[346, project.Shot.width]}
+                                    sizes={`(max-width: 720px) 346px, ${project.Shot.width}px`}
+                                    loading="lazy"
+                                />
+                            </a>
+
+                            {/* Card Body */}
+                            <div class="w-full text-[0.95em] px-5 pb-4">
+                                {/* Title + Status */}
+                                <div class="flex justify-between items-center pt-4">
+                                    <h3 class="font-orbitron text-[1.2em] smallCaps font-semibold">
+                                        {project.Name}
+                                    </h3>
+                                    <div>
+                                        {/* Development Status */}
+                                        {project.Status === "development" && (
+                                            <div class="flex_center gap-1 px-2.5 rounded-md py-0.5 text-orange-500 bg-orange-500/20 text-xs font-medium">
+                                                <WrenchIcon size={12} />
+                                                Dev
+                                            </div>
+                                        )}
+
+                                        {/* Beta Status */}
+                                        {project.Status === "beta" && (
+                                            <div class="flex_center gap-1 px-2.5 rounded-md py-0.5 text-blue-500 bg-blue-500/20 text-xs font-medium">
+                                                <FlaskConicalIcon size={12} />
+                                                Beta
+                                            </div>
+                                        )}
+
+                                        {/* Completed Status */}
+                                        {project.Status === "completed" && (
+                                            <div class="flex_center gap-1 px-2.5 rounded-md py-0.5 text-emerald-500 bg-emerald-500/20 text-xs font-medium">
+                                                <CheckCircleIcon size={12} />
+                                                Live
+                                            </div>
+                                        )}
+                                    </div>
+                                </div>
+
+                                {/* Short Description */}
+                                <p class="font-poppins text-center text-sm font-light leading-relaxed line-clamp-3 mt-2">
+                                    {project.ShortDesc}
+                                </p>
+
+                                {/* Actions */}
+                                <div class="flex justify-center gap-3 mt-4">
+                                    {/* Github Repo Link */}
+                                    {project.Source && (
+                                        <a
+                                            href={project.Source}
+                                            target="_blank"
+                                            rel="noreferrer"
+                                            class="PrimaryBtn"
+                                            aria-label={`GitHub source for ${project.Name}`}
+                                            title="GitHub Source"
+                                        >
+                                            <svg
+                                                stroke="currentColor"
+                                                fill="currentColor"
+                                                stroke-width="0"
+                                                viewBox="0 0 16 16"
+                                                color="#fff"
+                                                height="24"
+                                                width="24"
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                style="color: var(--textButton);"
+                                                aria-hidden="true"
+                                            >
+                                                <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z" />
+                                            </svg>
+                                        </a>
+                                    )}
+                                    {/* Live Demo Link */}
+                                    {project.Link && (
+                                        <a
+                                            href={project.Link}
+                                            target="_blank"
+                                            rel="noreferrer"
+                                            class="PrimaryBtn"
+                                        >
+                                            Demo
+                                        </a>
+                                    )}
+                                </div>
+
+                                {/* Tech Stack */}
+                                <div class="w-full flex_center gap-4 pt-4 flex-wrap">
+                                    {project.Tech.map((tech) => {
+                                        return (
+                                            <Image
+                                                src={tech.icon}
+                                                alt={`TechIcon ${tech.title}`}
+                                                width={18}
+                                                height={18}
+                                                loading="lazy"
+                                            />
+                                        );
+                                    })}
+                                </div>
+                            </div>
+                        </div>
+                    );
+                })
+            }
+        </div>
+    </SectionTitle>
+</section>

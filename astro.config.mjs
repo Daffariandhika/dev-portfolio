@@ -4,5 +4,9 @@ import preact from "@astrojs/preact";
 import compress from "astro-compress";
 
 export default defineConfig({
-  integrations: [preact(), tailwind(), compress()],
+  integrations: [
+    preact(),
+    tailwind(),
+    compress()
+  ],
 });

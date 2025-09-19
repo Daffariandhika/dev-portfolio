@@ -2,11 +2,11 @@
   "name": "dev-portfolio",
   "type": "module",
   "version": "0.0.1",
-  "homepage": "https://github.com/Daffariandhika/portfolio",
+  "homepage": "https://github.com/Daffariandhika/dev-portfolio",
   "author": {
     "name": "Daffariandhika",
     "email": "muhammaddaffariandhika@gmail.com",
-    "url": "https://riandhika.vercel.app"
+    "url": "https://daffariandhika.netlify.app"
   },
   "license": "MIT",
   "scripts": {
