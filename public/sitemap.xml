@@ -1,16 +1,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 	<url>
-		<loc>https://daffarianhika.netlify.app/projects/readuniverse/</loc>
+		<loc>https://daffarianhika.vercel.app/projects/readuniverse/</loc>
 		<lastmod>2024-03-20T17:45:26+00:00</lastmod>
 		<priority>1.00</priority>
 	</url>
 	<url>
-		<loc>https://daffarianhika.netlify.app/projects/payrollku/</loc>
+		<loc>https://daffarianhika.vercel.app/projects/payrollku/</loc>
 		<lastmod>2024-03-20T17:45:26+00:00</lastmod>
 		<priority>0.80</priority>
 	</url>
 	<url>
-		<loc>https://daffarianhika.netlify.app/projects/goodreadsscraper/</loc>
+		<loc>https://daffarianhika.vercel.app/projects/goodreadsscraper/</loc>
 		<lastmod>2024-03-20T17:45:26+00:00</lastmod>
 		<priority>0.80</priority>
 	</url>

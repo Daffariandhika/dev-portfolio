@@ -1,6 +1,6 @@
 {
     "short_name": "Riandhika",
-    "name": "Riandhika.dev",
+    "name": "Daffa Riandhika Portfolio",
     "icons": [
         {
             "src": "./Icons/144.png",
@@ -30,7 +30,7 @@
     "display": "standalone",
     "theme_color": "#000",
     "background_color": "#000",
-    "description": "Welcome to Daffa Riandhika’s portfolio.",
+    "description": "Specializing in building digital solutions that drive growth.",
     "dir": "ltr",
     "lang": "en",
     "orientation": "portrait",

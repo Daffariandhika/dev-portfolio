@@ -15,8 +15,11 @@ import { Footer } from "../components";
         <meta name="generator" content={Astro.generator} />
         <meta name="theme-color" content="#000" />
         <meta name="robots" content="index, follow" />
-        <meta name="google-site-verification" content="" />
-        <meta name="author" content="DaffaRiandhika" />
+        <meta
+            name="google-site-verification"
+            content="google82953ef6a4732cd2"
+        />
+        <meta name="author" content="daffariandhika" />
         <link rel="manifest" href="/manifest.json" />
 
         <!-- Preload CSS Styles -->
@@ -27,13 +30,13 @@ import { Footer } from "../components";
         <SEO
             title={title}
             description={description}
-            canonical=`https://daffariandhika.netlify.app/projects/${title.replace(" | daffariandhika","").replaceAll(" ","-").toLowerCase()}`
+            canonical=`https://daffariandhika.vercel.app/projects/${title.replace(" | daffariandhika","").replaceAll(" ","-").toLowerCase()}`
             openGraph={{
                 basic: {
                     title: `${title}`,
                     type: "website",
                     image: "/favicon.png",
-                    url: "https://daffariandhika.netlify.app/",
+                    url: "https://daffariandhika.vercel.app/",
                 },
             }}
             extend={{

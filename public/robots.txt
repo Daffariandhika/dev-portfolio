@@ -1,4 +1,4 @@
 # https://www.robotstxt.org/robotstxt.html
 User-agent: *
 Disallow:
-Sitemap: https://daffariandhika.netlify.app/sitemap.xml
+Sitemap: https://daffariandhika.vercel.app/sitemap.xml
