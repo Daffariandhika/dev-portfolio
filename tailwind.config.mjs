@@ -24,7 +24,6 @@ export default {
 			},
 			fontFamily: {
 				poppins: "var(--astro-font-poppins)",
-				satisfy: "var(--astro-font-satisfy)",
 				orbitron: "var(--astro-font-orbitron)",
 				grotesk: "var(--astro-font-grotesk)",
 			},
@@ -38,7 +37,7 @@ export default {
 				'imgOverlayGradient': 'radial-gradient(circle, transparent, var(--base) 95%),linear-gradient(180deg,var(--base),transparent 25%),linear-gradient(0deg,var(--base),transparent 25%) '
 			},
 			boxShadow: {
-				'front': 'var(--shadowOne) 0px 1px 1px 0px inset, var(--shadowTwo) 0px 50px 100px -20px, var(--shadowThree) 0px 30px 60px -30px',
+				'front': 'var(--shadowOne) 0px 1px 1px 0px inset',
 				'inner-lg': 'var(--inputShadowOne) 3px 3px 6px 0px inset, var(--inputShadowTwo) -3px -3px 6px 1px inset',
 			},
 			keyframes: {
@@ -46,9 +45,19 @@ export default {
 					from: { opacity: 1, scale: 0 },
 					to: { opacity: 0, scale: 1 },
 				},
+				toastIn: {
+					'0%': { opacity: '0', transform: 'translateY(20px)' },
+					'100%': { opacity: '1', transform: 'translateY(0)' },
+				},
+				toastOut: {
+					'0%': { opacity: '1', transform: 'translateY(0)' },
+					'100%': { opacity: '0', transform: 'translateY(20px)' },
+				},
 			},
 			animation: {
 				"ripple": "ripple 1s infinite",
+				'toast-in': 'toastIn 0.3s ease-out forwards',
+				'toast-out': 'toastOut 0.3s ease-in forwards',
 			},
 		},
 	},

@@ -1,18 +1,17 @@
 import { useState, useRef } from 'preact/hooks'
-import emailjs from "@emailjs/browser"
-
-type StatusType = {
-    status: boolean,
-    message: string
+import emailjs from '@emailjs/browser'
+type ToastType = {
+    type: "success" | "error";
+    message: string;
 }
-
 const ContactForm = () => {
-    const [mailStatus, setMailStatus] = useState<StatusType>({ status: false, message: "" })
+    const [toast, setToast] = useState<ToastType | null>(null);
     const [isLoading, setisLoading] = useState<boolean>(false)
 
     const NameRef = useRef<HTMLInputElement>(null)
     const EmailRef = useRef<HTMLInputElement>(null)
     const MessageRef = useRef<HTMLTextAreaElement>(null)
+    const ToastRef = useRef<HTMLDivElement>(null);
 
     const getInitials = (name: string) => {
         if (!name) return '';
@@ -63,6 +62,7 @@ const ContactForm = () => {
             }
 
             setisLoading(true)
+
             const mailRes = await emailjs.send(
                 import.meta.env.PUBLIC_EMAILJS_SERVICE_ID,
                 import.meta.env.PUBLIC_EMAILJS_TEMPLATE_ID,
@@ -74,85 +74,123 @@ const ContactForm = () => {
                 throw new Error("Message not Sent")
             }
 
-            setMailStatus({ status: true, message: "Message Sent!" })
-            setisLoading(false)
+            setToast({
+                message: 'Message Sent Successfully!',
+                type: 'success'
+            });
 
             NameRef.current.value = ""
             EmailRef.current.value = ""
             MessageRef.current.value = ""
-        } catch (error: { message: string } | any) {
-            setMailStatus({ status: false, message: error.message })
-        } finally {
+        }
+        catch (error: { message: string } | any) {
+            setToast({
+                message: 'Failed to send message',
+                type: 'error'
+            }
+            );
+        }
+        finally {
+            setisLoading(false);
             setTimeout(() => {
-                setMailStatus({ status: false, message: "" })
+                if (ToastRef.current) {
+                    ToastRef.current.classList.remove('animate-toast-in');
+                    ToastRef.current.classList.add('animate-toast-out');
+                }
+                setTimeout(() => setToast(null), 300);
             }, 3000);
         }
-    }
+    };
 
     return (
-        <form onSubmit={HandleFormSubmit} className="Fade_Up bg-LinkBtnGradient rounded-md w-full lg:max-w-[800px] px-4 py-2 flex_center flex-col">
-            <label
-                htmlFor="name"
-                className="noCustomCursor w-full h-fit flex justify-center items-start flex-col px-1 py-2 mt-2"
-            >
-                Name
-                <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    placeholder="Enter your Name"
-                    className="w-full p-4 mt-1 rounded-md border-none outline-none bg-inputBackground text-foreground shadow-inner-lg"
-                    autoComplete='name'
-                    required
-                    ref={NameRef} />
-            </label>
-            <label
-                htmlFor="email"
-                className="noCustomCursor w-full h-fit flex justify-center items-start flex-col px-1 py-2"
-            >
-                Email
-                <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    placeholder="youremail@gmail.com"
-                    className="w-full p-4 mt-1 rounded-md border-none outline-none bg-inputBackground text-foreground shadow-inner-lg"
-                    autoComplete='email'
-                    required
-                    ref={EmailRef} />
-            </label>
-            <label
-                htmlFor="message"
-                className="noCustomCursor w-full h-fit flex justify-center items-start flex-col px-1 py-2"
-            >
-                Message
-                <textarea
-                    rows={5}
-                    id="message"
-                    name="message"
-                    placeholder="Enter your Message"
-                    className="w-full p-4 mt-1 rounded-md border-none outline-none bg-inputBackground text-foreground shadow-inner-lg resize-none"
-                    ref={MessageRef} />
-            </label>
-
-            <div className="w-full flex justify-start items-center gap-4">
-                <button
-                    className={`flex_center gap-4 PrimaryBtn my-4 mx-2 ${isLoading ? 'opacity-50 cursor-not-allowed' : 'opacity-100'}`}
-                    type="submit"
-                    disabled={isLoading}
+        <>
+            {toast && (
+                <div
+                    ref={ToastRef}
+                    className={`text-sm fixed bottom-6 right-6 px-6 py-4 rounded-md font-orbitron smallCaps tracking-widest text-white shadow-md z-50 ${toast.type === 'success' ? 'bg-green-500' : 'bg-red-500'} ${toast ? 'animate-toast-in' : 'animate-toast-out'}`}
                 >
-                    {
-                        isLoading ? (
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" class="lucide lucide-loader-2 animate-spin"><path d="M21 12a9 9 0 1 1-6.219-8.56" /></svg>
+                    {toast.message}
+                </div>
+            )}
+            <form
+                onSubmit={HandleFormSubmit}
+                className="Fade_Up bg-LinkBtnGradient rounded-md w-full lg:max-w-[800px] px-4 py-2 flex_center flex-col"
+            >
+                <label
+                    htmlFor="name"
+                    className="noCustomCursor w-full h-fit flex justify-center items-start flex-col px-1 py-2 mt-2"
+                >
+                    Name
+                    <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        placeholder="Enter your Name"
+                        className="w-full p-4 mt-1 rounded-md border-none outline-none bg-inputBackground text-foreground shadow-inner-lg"
+                        autoComplete='name'
+                        required
+                        ref={NameRef}
+                    />
+                </label>
+                <label
+                    htmlFor="email"
+                    className="noCustomCursor w-full h-fit flex justify-center items-start flex-col px-1 py-2"
+                >
+                    Email
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder="youremail@gmail.com"
+                        className="w-full p-4 mt-1 rounded-md border-none outline-none bg-inputBackground text-foreground shadow-inner-lg"
+                        autoComplete='email'
+                        required
+                        ref={EmailRef}
+                    />
+                </label>
+                <label
+                    htmlFor="message"
+                    className="noCustomCursor w-full h-fit flex justify-center items-start flex-col px-1 py-2"
+                >
+                    Message
+                    <textarea
+                        rows={4}
+                        id="message"
+                        name="message"
+                        placeholder="Enter your Message"
+                        className="w-full p-4 mt-1 rounded-md border-none outline-none bg-inputBackground text-foreground shadow-inner-lg resize-none"
+                        ref={MessageRef}
+                    />
+                </label>
+                <div className="w-full flex justify-start items-center gap-4">
+                    <button
+                        className={`flex_center gap-4 PrimaryBtn my-4 mx-2 ${isLoading ? 'opacity-70 cursor-not-allowed' : 'opacity-100'}`}
+                        type="submit"
+                        disabled={isLoading}
+                    >
+                        {isLoading ? (
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                strokeWidth="2"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                class="lucide lucide-loader-2 animate-spin"
+                            >
+                                <path d="M21 12a9 9 0 1 1-6.219-8.56" />
+                            </svg>
                         ) : (
-                            <span>Submit</span>
-                        )
-                    }
-                </button>
-                <span>{mailStatus.message}</span>
-            </div>
-        </form>
-    )
-}
+                            <span>Send</span>
+                        )}
+                    </button>
+                </div>
+            </form>
+        </>
+    );
+};
 
 export default ContactForm

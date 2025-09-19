@@ -14,9 +14,16 @@ import { Footer } from "../components";
 		<meta name="generator" content={Astro.generator} />
 		<meta name="theme-color" content="#000" />
 		<meta name="robots" content="index, follow" />
-		<meta name="google-site-verification" content="google82953ef6a4732cd2" />
-		<meta name="author" content="daffariandhika" />
-		<meta name="publisher" content="daffariandhika" />
+		<meta
+			name="google-site-verification"
+			content="google82953ef6a4732cd2"
+		/>
+		<meta
+			name="keywords"
+			content="daffa, riandhika, daffariandhika, daffa riandhika, portfolio, readuniverse, payrollku, @riandhika.a, daffariandhika.vercel.app, Fullstack Developer, MERN stack developer, Personal Portfolio, Daffariandhika.github.io"
+		/>
+		<meta name="author" content="DaffaRiandhika" />
+		<meta name="publisher" content="DaffaRiandhika" />
 		<link rel="manifest" href="/manifest.json" />
 
 		<!-- Preload CSS Styles -->
@@ -25,14 +32,14 @@ import { Footer } from "../components";
 		<link rel="preload stylesheet" href="/styles/cursor.css" as="style" />
 
 		<SEO
-			title="DaffaRiandhika Portfolio"
+			title="Riandhika"
 			description="Specializing in building digital solutions that drive growth."
 			canonical="https://daffariandhika.vercel.app/"
 			openGraph={{
 				basic: {
-					title: "DaffaRiandhika Portfolio",
+					title: "Riandhika",
 					type: "website",
-					image: "./",
+					image: "/favicon.png",
 					url: "https://daffariandhika.vercel.app/",
 				},
 			}}
@@ -460,6 +467,18 @@ import { Footer } from "../components";
 			.Title-Tag {
 				font-family: Orbitron;
 				font-variant: small-caps;
+				color: hsla(var(--primary));
+			}
+
+			.Title-Tag-Subheading {
+				font-family: Orbitron;
+				font-variant: small-caps;
+			}
+
+			.Title-Tag-About {
+				font-family: Orbitron;
+				font-variant: small-caps;
+				color: hsla(var(--primary));
 			}
 
 			.Title-Tag span,

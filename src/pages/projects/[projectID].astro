@@ -10,8 +10,15 @@ const { projectID } = Astro.params;
 
 import { Image } from "astro:assets";
 import { ProjectLayout } from "../../layouts";
-import { CheckIcon, ClipboardCopyIcon, ExternalLinkIcon } from "lucide-preact";
-import { SectionTitle } from "../../components/UI";
+import {
+    CheckCircleIcon,
+    CheckIcon,
+    ClipboardCopyIcon,
+    ExternalLinkIcon,
+    FlaskConicalIcon,
+    WrenchIcon,
+} from "lucide-preact";
+import { CenterTitle } from "../../components/UI";
 import { ProjectLogo } from "../../assets/Icons";
 
 // Lazy loading ProjectInfo
@@ -22,7 +29,10 @@ const [project] = ProjectsList.filter(
 );
 ---
 
-<ProjectLayout title=`${project.Name}` description={project.ShortDesc}>
+<ProjectLayout
+    title=`${project.Name}  | DaffaRiandhika`
+    description={project.LineDesc}
+>
     <div class="Fade_In flex_center absolute inset-0 w-full h-full z-[-1]">
         <Image
             src={project.Shot}
@@ -42,19 +52,24 @@ const [project] = ProjectsList.filter(
             height={100}
             loading="eager"
         />
-
-        <h1
-            class="Fade_Up font-orbitron text-[1.6em] md:text-[1.8em] text-center"
-        >
-            {project.Name}
-        </h1>
+        <div class="Fade_Up font-orbitron text-center smallCaps">
+            <h1 class="text-[1.8em] md:text-[2em] lg:text-[2.2em]">
+                {project.Name}
+            </h1>
+            <p
+                class="text-[0.8em] lg:text-[1em] tracking-widest text-primaryLite"
+            >
+                {project.LineDesc}
+            </p>
+        </div>
 
         <div class="flex_center gap-4 text-[1em]">
             <a
                 href={project.Source}
                 target="_blank"
                 rel="author"
-                class="Fade_Stagger flex_center gap-2 PrimaryBtn px-4 py-2 rounded"
+                class="Fade_Stagger flex_center gap-2 PrimaryBtn"
+                title={`view ${project.Name} source code`}
             >
                 <svg
                     stroke="currentColor"
@@ -72,24 +87,55 @@ const [project] = ProjectsList.filter(
                     >
                     </path>
                 </svg>
-                <span> Source Code </span>
+                <span>Source</span>
             </a>
 
             <a
                 href={project.Link}
                 target="_blank"
                 rel="noreferrer"
-                class="Fade_Stagger flex_center gap-2 PrimaryBtn px-4 py-2 rounded"
+                class="Fade_Stagger flex_center gap-2 PrimaryBtn"
+                title={`View ${project.Name} live demo`}
             >
                 <ExternalLinkIcon />
-                <span> Live Demo </span>
+                <span>Demo</span>
             </a>
         </div>
-    </div>
 
-    <div
-        class="flex Fade_Stagger justify-center items-center xl:items-start flex-col xl:flex-row gap-4 pb-10 pt-6"
-    >
+        <div>
+            {/* Development Status */}
+            {
+                project.Status === "development" && (
+                    <div class="flex_center Fade_Stagger gap-1 px-2 rounded py-1 text-orange-500 bg-orange-500/20 text-xs font-medium w-fit mx-auto">
+                        <WrenchIcon size={12} />
+                        Under Development
+                    </div>
+                )
+            }
+
+            {/* Beta Status */}
+            {
+                project.Status === "beta" && (
+                    <div class="flex_center Fade_Stagger gap-1 px-2 rounded py-1 text-blue-500 bg-blue-500/20 text-xs font-medium w-fit mx-auto">
+                        <FlaskConicalIcon size={12} />
+                        Beta Deployment
+                    </div>
+                )
+            }
+
+            {/* Completed Status */}
+            {
+                project.Status === "completed" && (
+                    <div class="flex_center Fade_Stagger gap-1 px-2 rounded py-1 text-emerald-500 bg-emerald-500/20 text-xs font-medium w-fit mx-auto">
+                        <CheckCircleIcon size={12} />
+                        Completed
+                    </div>
+                )
+            }
+        </div>
+    </div>
+    <CenterTitle title="About This Project" classname="mt-10" />
+    <div class="flex Fade_Stagger justify-center items-center">
         <!-- Mock Up Image -->
 
         <!-- <Image
@@ -158,49 +204,55 @@ const [project] = ProjectsList.filter(
             )} -->
 
         <p
-            class="w-full text-justify text-[1em] mt-4 px-4 indent-12 font-poppins"
+            class="w-full text-justify text-[0.9em] max-sm:text-[0.8em] px-4 indent-12 font-poppins"
         >
             {project.Desc}
         </p>
     </div>
 
-    <SectionTitle title="Features" color="primary" align="right">
-        <div
-            class="grid grid-cols-1 md:grid-cols-2 gap-y-4 md:gap-y-6 md:gap-x-10 md:mx-4"
-        >
-            {
-                project.features.map((feature) => (
-                    <div class="Fade_Up p-4 md:p-6 flex flex-col gap-3 bg-skillGradientAlt rounded-xl">
-                        <span class="font-orbitron smallCaps tracking-wide text-base md:text-lg font-semibold">
-                            {feature.title}
-                        </span>
-                        <p class="text-sm leading-relaxed font-poppins line-clamp-2">
-                            {feature.description}
-                        </p>
-                    </div>
-                ))
-            }
-        </div>
-    </SectionTitle>
+    <CenterTitle title="Features" classname="mt-10" />
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:mx-4">
+        {
+            project.features.map((feature) => (
+                <div class="Fade_Up p-4 md:p-6 flex flex-col gap-3 bg-skillGradientAlt rounded-md shadow-front">
+                    <span
+                        class="font-orbitron smallCaps tracking-wider text-[0.9em] font-semibold text-primaryLite"
+                        title={feature.title}
+                    >
+                        {feature.title}
+                    </span>
+                    <p
+                        class="text-[0.8em] leading-relaxed font-poppins line-clamp-2"
+                        title={feature.description}
+                    >
+                        {feature.description}
+                    </p>
+                </div>
+            ))
+        }
+    </div>
 
-    <SectionTitle title="Tech Stack" align="left" color="primary" />
+    <CenterTitle title="Tech Stack" classname="mt-10" />
     <div
-        class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 p-2 mb-96 4xl:mb-[30rem]"
+        class="Fade_Up gap-2 flex flex-wrap justify-center items-center mb-96 4xl:mb-[30rem]"
     >
         {
             project.Tech.map((tech) => (
-                <div class="Fade_Stagger flex_center flex-col gap-4 p-4 bg-skillGradientAlt rounded-md">
-                    <div class="flex_center gap-2">
+                <div
+                    title={tech.title}
+                    class="Fade_Stagger flex_center flex-col gap-4 min-w-24 aspect-square rounded-lg bg-skillGradient shadow-front"
+                >
+                    <div class="flex_center min-h-[35px] aspect-square">
                         <Image
                             src={tech.icon}
-                            alt={tech.title}
-                            width={20}
-                            height={20}
+                            alt={tech.title.replaceAll(" ", "_") + "_Icon"}
+                            width={35}
+                            height={35}
                         />
-                        <span class="text-[0.8em] tracking-wide font-orbitron smallCaps">
-                            {tech.title}
-                        </span>
                     </div>
+                    <span class="text-[0.7em] tracking-wider font-orbitron smallCaps font-light">
+                        {tech.title}
+                    </span>
                 </div>
             ))
         }

@@ -30,6 +30,7 @@ import {
 
 type ProjectsListType = {
     Name: string,
+    LineDesc: string,
     ShortDesc: string,
     Desc: string,
     Shot: ImageMetadata,
@@ -47,6 +48,10 @@ type ProjectsListType = {
         icon: ImageMetadata
     }[],
     features: {
+        title: string,
+        description: string
+    }[],
+    improvement: {
         title: string,
         description: string
     }[],
@@ -173,8 +178,9 @@ const FeatureList = {
 export const ProjectsList: ProjectsListType = [
     {
         Name: "ReadUniverse",
+        LineDesc: "Gamified Online Book Store",
         ShortDesc: "Gamified retail based online bookstore with advanced and rich of feature.",
-        Desc: "ReadUniverse is a specialized e-commerce platform designed to modernize conventional book retail businesses and help them reach a wider market. Built on the MERN stack with additional cutting-edge technologies, it provides a dedicated, retail-based solution where each deployment serves a single bookstore or business. The platform combines personalization and interactivity through dynamic recommendations, bestseller highlights, and a gamification system that rewards users with XP, badges, and leaderboard progression for activities like reviews and purchases. To support business growth, an integrated admin dashboard delivers powerful analytics on revenue, user activity, and inventory. With secure authentication, responsive design, and Docker-based containerization, ReadUniverse ensures reliable performance across environments. By merging scalability with tailored retail functionality, it redefines how bookstores can compete in the digital market.",
+        Desc: "ReadUniverse is a specialized e-commerce platform designed to modernize conventional book retail businesses and help them reach a wider market. Built with MERN stack with additional cutting edge technologies, it provides a dedicated, retail based solution where each deployment serves a single bookstore or business. The platform combines personalization and interactivity through dynamic recommendations, bestseller highlights, and a gamification system that rewards users with XP, badges, and leaderboard progression for activities like reviews and purchases. To support business growth, an integrated admin dashboard delivers advanced analytics on revenue, user activity, and inventory. With secure authentication, responsive design, and Docker based containerization, ReadUniverse ensures reliable performance across environments. By merging scalability with tailored retail functionality, it redefines how bookstores can compete in the digital market.",
         Shot: ReadUniverse,
         Mockup: ReadUniverseMockup,
         Theme: "#000",
@@ -259,14 +265,25 @@ export const ProjectsList: ProjectsListType = [
             },
             FeatureList.Responsive
         ],
+        improvement: [
+            {
+                title: "Payment Gateway",
+                description: "Integrating with third party payment gateway such as stripe or midtrans"
+            },
+            {
+                title: "Backend Upgrade",
+                description: "Integrating with third party payment gateway such as stripe or midtrans"
+            },
+        ],
         hideProject: false,
         LogoSize: 50,
         versions: []
     },
     {
         Name: "PayrollKu",
-        ShortDesc: "End-to-end payroll system and tax compliance platform for Indonesian businesses.",
-        Desc: "PayrollKu began as a university assignment to create a simple financial application, but quickly evolved into a fully-featured payroll automation platform. Rather than building a basic calculator, I set out to solve a real-world challenge faced by Indonesian businesses: time-consuming, error-prone payroll processing and complex regulatory compliance. Built with the MERN stack, PayrollKu automates the entire payroll lifecycle — from salary calculation to tax compliance — while minimizing manual input. It accurately handles PPh 21 progressive tax, BPJS health and employment contributions, and supports highly customizable salary structures for different employee levels. The platform provides secure role-based access control, automated digital payslip generation with email distribution, advanced reporting dashboards for real-time insights, and Excel export functionality for integration with accounting workflows. The result is a scalable solution that saves HR teams hours of manual work each month, eliminates payroll errors, and ensures compliance with Indonesian tax and labor regulations — going far beyond the original scope of the academic project.",
+        LineDesc: "End to End Payroll System",
+        ShortDesc: "End to end payroll system and tax compliance platform for Indonesian businesses.",
+        Desc: "PayrollKu began as a university assignment to create a simple financial application, but quickly evolved into a fully featured payroll system platform. I set out to solve a real world challenge and scenario from indonesia, time consuming, error prone payroll processing and complex regulatory compliance. Built with the MERN stack, PayrollKu providing rich feature of the entire payroll lifecycle, from salary calculation to tax compliance, while minimizing manual input. It handles PPh 21 progressive tax calculation, BPJS health coverage and employment contributions and supports highly customizable salary structures for different employee levels. The platform provides secure role based access control, automated digital and profesional payslip generation with email distribution, advanced reporting dashboards for further analytics, and Excel export functionality for integration with accounting workflows. The result is a scalable solution that hours of manual work each month, minimizing payroll errors, and ensures compliance with Indonesian tax and labor regulations, going far beyond the original scope of the academic project.",
         Shot: PayrollKu,
         Mockup: PayrollKuMockup,
         Theme: "#fff",
@@ -309,14 +326,17 @@ export const ProjectsList: ProjectsListType = [
                 description: "Optimized for desktop, tablet, and mobile devices, ensuring a seamless experience across all screen sizes."
             }
         ],
+        improvement: [
+        ],
         hideProject: false,
         LogoSize: 50,
         versions: []
     },
     {
         Name: "GoodReads Scraper",
+        LineDesc: "Dynamic Data Scraper Utility",
         ShortDesc: "Comprehensive data scraper with multi format output and pagination handling.",
-        Desc: "GoodReads Scraper is a robust Python-based data collection tool built to extract structured book metadata from Goodreads. Originally developed to seed the database for my ReadUniverse project, it automates the process of gathering large volumes of book data — including titles, authors, descriptions, ISBNs, publication dates, categories, ratings, and reviews. The scraper includes configurable options for URL batching, rate limiting, and multiple output formats, ensuring efficient, scalable, and respectful data collection. This project showcases my ability to build practical tools that support real-world development needs and streamline the process of populating complex databases with high-quality dummy data.",
+        Desc: "GoodReads Scraper is a robust Python based data collection tool built to extract structured book metadata from Goodreads. Originally developed to seed the database for my ReadUniverse project, it automates the process of gathering large volumes of book data, including titles, authors, descriptions, ISBNs, publication dates, categories, ratings, and reviews. The scraper includes configurable options for URL batching, rate limiting, and multiple output format including JSON and CSV, ensuring efficient, scalable, and respectful data collection. This project showcases my ability to build practical tools that support real world development needs and streamline the process of populating complex databases with high quality dummy data.",
         Shot: GoodReadsScraper,
         Mockup: PayrollKuMockup,
         Theme: "#000",
@@ -349,6 +369,8 @@ export const ProjectsList: ProjectsListType = [
                 title: "Modular Design",
                 description: "Clean separation between URL collection and data extraction modules for easy customization and maintenance."
             }
+        ],
+        improvement: [
         ],
         hideProject: false,
         LogoSize: 50,

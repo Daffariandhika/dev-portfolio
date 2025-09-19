@@ -1,5 +1,5 @@
 ---
-import { CenterTitle, SectionTitle } from "./UI";
+import { SectionTitle } from "./UI";
 import { ContactForm } from "./Preact";
 ---
 
@@ -22,31 +22,3 @@ import { ContactForm } from "./Preact";
         <ContactForm client:load />
     </div>
 </section>
-
-<script is:inline type="module">
-    document.addEventListener("DOMContentLoaded", () => {
-        const center = document.querySelector("#socialCircle");
-        const images = document.querySelectorAll(".socialIcon");
-
-        if (!center || !images.length) {
-            console.error("Social circle or icons not found.");
-            return;
-        }
-
-        const iconSize = images[0].clientWidth;
-        const radius = Math.ceil((center.clientWidth + 2) / 2);
-
-        images.forEach((image, index) => {
-            const angle = (index / (images.length - 1)) * Math.PI;
-            const x = Math.cos(-angle) * radius - iconSize / 2;
-            const y = Math.sin(-angle) * radius - iconSize / 2;
-
-            const imageStyle = image.style;
-            const centerWidth = center.offsetWidth;
-            const centerHeight = center.offsetHeight;
-
-            imageStyle.left = `${centerWidth / 2 + x}px`;
-            imageStyle.top = `${centerHeight / 2 + y}px`;
-        });
-    });
-</script>
