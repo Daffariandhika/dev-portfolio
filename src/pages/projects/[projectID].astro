@@ -12,8 +12,6 @@ import { Image } from "astro:assets";
 import { ProjectLayout } from "../../layouts";
 import {
     CheckCircleIcon,
-    CheckIcon,
-    ClipboardCopyIcon,
     ExternalLinkIcon,
     FlaskConicalIcon,
     WrenchIcon,
@@ -30,7 +28,7 @@ const [project] = ProjectsList.filter(
 ---
 
 <ProjectLayout
-    title=`${project.Name}  | DaffaRiandhika`
+    title=`${project.Name} | Daffa Riandhika`
     description={project.LineDesc}
 >
     <div class="Fade_In flex_center absolute inset-0 w-full h-full z-[-1]">
@@ -245,7 +243,7 @@ const [project] = ProjectsList.filter(
                     <div class="flex_center min-h-[35px] aspect-square">
                         <Image
                             src={tech.icon}
-                            alt={tech.title.replaceAll(" ", "_") + "_Icon"}
+                            alt={tech.title}
                             width={35}
                             height={35}
                         />
@@ -259,7 +257,7 @@ const [project] = ProjectsList.filter(
     </div>
 </ProjectLayout>
 
-<script is:inline type="module">
+<!-- <script is:inline type="module">
     const emailCopyBtn = document.getElementById("emailCopyBtn");
     const passCopyBtn = document.getElementById("passCopyBtn");
     const emailContent = document.getElementById("emailContent");
@@ -290,4 +288,4 @@ const [project] = ProjectsList.filter(
             passCopyIcons[1].classList.replace("visible", "invisible");
         }, 2000);
     });
-</script>
+</script> -->

@@ -1,11 +1,5 @@
 ---
-import {
-    ExternalLinkIcon,
-    WrenchIcon,
-    PanelsRightBottomIcon,
-    CheckCircleIcon,
-    FlaskConicalIcon,
-} from "lucide-preact";
+import { WrenchIcon, CheckCircleIcon, FlaskConicalIcon } from "lucide-preact";
 
 import { SectionTitle } from "./UI";
 import { Image } from "astro:assets";
@@ -35,7 +29,7 @@ const { ProjectsList } = await ProjectInfo;
                             >
                                 {/* Project Image */}
                                 <Image
-                                    class="bg-cover w-full"
+                                    class="bg-cover w-full transition-opacity"
                                     src={project.Shot}
                                     alt={`Project_ScreenShot_${project.Name}`}
                                     widths={[346, project.Shot.width]}

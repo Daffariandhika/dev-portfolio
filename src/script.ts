@@ -129,7 +129,6 @@ ScrollTrigger.batch(".Project_Stagger", {
     once: true
 });
 
-
 // FadeUp Animation
 ScrollTrigger.batch(".Fade_Up", {
     start: "top bottom-=100px",

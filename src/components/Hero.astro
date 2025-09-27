@@ -1,6 +1,7 @@
 ---
 import { Image } from "astro:assets";
-import Riandhika_680 from "../Riandhika_680.webp";
+import Riandhika180 from "../Riandhika180.webp";
+import Riandhika250 from "../Riandhika250.webp";
 ---
 
 <section
@@ -9,16 +10,22 @@ import Riandhika_680 from "../Riandhika_680.webp";
 >
     <!-- Hero Intro Info ( Left Side ) -->
     <div class="w-full lg:w-fit flex justify-start items-center flex-col gap-8">
-        <div class="text-[18px] lg:text-[26px] text-center lg:pt-0 pt-4 max-sm:-mt-12 lg:text-left">
-            <h1 class="Fade_Stagger gradientText font-orbitron text-[4em] lg:text-[7rem] leading-tight">
+        <div
+            class="text-[18px] lg:text-[26px] text-center lg:pt-0 pt-4 max-sm:-mt-12 lg:text-left"
+        >
+            <h1
+                class="Fade_Stagger gradientText font-orbitron text-[4em] lg:text-[7rem] leading-tight"
+            >
                 Riandhika
             </h1>
             <p class="Fade_Stagger gradientText font-orbitron">
-                MERN Stack Developer
+                Fullstack Developer
             </p>
         </div>
 
-        <div class="Fade_Stagger flex justify-center lg:justify-start items-center w-full gap-10 -mt-2 pb-4">
+        <div
+            class="Fade_Stagger flex justify-center lg:justify-start items-center w-full gap-10 -mt-2 pb-4"
+        >
             <!-- Github Icon ( Link ) -->
             <a
                 href="https://github.com/Daffariandhika"
@@ -103,14 +110,18 @@ import Riandhika_680 from "../Riandhika_680.webp";
     </div>
 
     <!-- Hero Profile Image (Right Side) -->
-    <Image
-        src={Riandhika_680}
-        alt="Hero_Avatar"
-        class="object-cover rounded-xl Spring_Up flex_center lg:w-[30%] md:w-[40%] w-[55%] aspect-square"
-        width="360"
-        height="180"
-        srcset={`${Riandhika_680.src} 680w`}
-        sizes="(max-width: 680px), 680px"
-        loading="eager"
-    />
+    <div
+        class="Spring_Up flex_center w-[360px] lg:w-[500px] aspect-square rounded-full z-10"
+    >
+        <Image
+            src={Riandhika180}
+            alt="Hero_Avatar"
+            class="object-cover rounded-xl"
+            width="250"
+            height="180"
+            srcset={`${Riandhika180.src} 180w, ${Riandhika250.src} 250w`}
+            sizes="(max-width: 640px) 180px, 250px"
+            loading="eager"
+        />
+    </div>
 </section>
