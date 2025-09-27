@@ -1,5 +1,5 @@
 ---
-import { SEO } from "astro-seo";
+// import { SEO } from "astro-seo";
 import { AstroFont } from "astro-font";
 import { join } from "node:path";
 import { Header, MobileHeader, Cursor } from "../components/UI";
@@ -14,51 +14,110 @@ import { Footer } from "../components";
 		<meta name="generator" content={Astro.generator} />
 		<meta name="theme-color" content="#000" />
 		<meta name="robots" content="index, follow" />
+		<meta name="google-site-verification" content="google82953ef6a4732cd2" />
+		<title>Daffa Riandhika | Fullstack Developer</title>
 		<meta
-			name="google-site-verification"
-			content="google82953ef6a4732cd2"
+			name="description"
+			content="Fullstack developer specializing in scalable backend systems and sleek frontends. Delivering high-quality, modern web applications with Node.js, React, and MongoDB."
 		/>
-		<meta
-			name="keywords"
-			content="daffa, riandhika, daffariandhika, daffa riandhika, portfolio, readuniverse, payrollku, @riandhika.a, daffariandhika.vercel.app, Fullstack Developer, MERN stack developer, Personal Portfolio, Daffariandhika.github.io"
-		/>
-		<meta name="author" content="DaffaRiandhika" />
-		<meta name="publisher" content="DaffaRiandhika" />
+		<meta name="author" content="Daffa Riandhika" />
+		<meta name="publisher" content="Daffa Riandhika" />
 		<link rel="manifest" href="/manifest.json" />
 
-		<!-- Preload CSS Styles -->
-		<link rel="preload stylesheet" href="/styles/global.css" as="style" />
-		<link rel="preload stylesheet" href="/styles/utility.css" as="style" />
-		<link rel="preload stylesheet" href="/styles/cursor.css" as="style" />
+		<link rel="canonical" href="https://daffariandhika.vercel.app/" />
 
-		<SEO
-			title="Riandhika"
-			description="Specializing in building digital solutions that drive growth."
-			canonical="https://daffariandhika.vercel.app/"
-			openGraph={{
-				basic: {
-					title: "Riandhika",
-					type: "website",
-					image: "/favicon.png",
-					url: "https://daffariandhika.vercel.app/",
-				},
-			}}
-			extend={{
-				link: [
-					{ rel: "icon", type: "image/png", href: "/favicon.png" },
-					{
-						rel: "shortcut",
-						type: "image/png",
-						href: "/favicon.png",
-					},
-					{
-						rel: "apple-touch-icon",
-						type: "image/png",
-						href: "/favicon.png",
-					},
-				],
-			}}
+		<meta property="og:title" content="Daffa Riandhika | Fullstack Developer" />
+		<meta
+			property="og:description"
+			content="Fullstack Developer with expertise in Node.js, React, Express, and MongoDB."
 		/>
+		<meta
+			property="og:image"
+			content="https://daffariandhika.vercel.app/Riandhika.webp"
+		/>
+		<meta property="og:url" content="https://daffariandhika.vercel.app/" />
+		<meta property="og:type" content="website" />
+		<meta property="og:locale" content="en_US" />
+
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta
+			name="twitter:title"
+			content="Daffa Riandhika | Fullstack Developer"
+		/>
+		<meta
+			name="twitter:description"
+			content="Fullstack Developer with expertise in Node.js, React, Express, and MongoDB."
+		/>
+		<meta
+			name="twitter:image"
+			content="https://daffariandhika.vercel.app/Riandhika.webp"
+		/>
+
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<link rel="apple-touch-icon" type="image/png" href="/favicon.png" />
+
+		<link rel="preload" href="/styles/global.css" as="style" />
+		<link rel="stylesheet" href="/styles/global.css" />
+		<link rel="preload" href="/styles/utility.css" as="style" />
+		<link rel="stylesheet" href="/styles/utility.css" />
+		<link rel="preload" href="/styles/cursor.css" as="style" />
+		<link rel="stylesheet" href="/styles/cursor.css" />
+
+		<script type="application/ld+json">
+			{
+				"@context": "https://schema.org",
+				"@type": "Person",
+				"name": "Daffa Riandhika",
+				"url": "https://daffariandhika.vercel.app/",
+				"image": "https://daffariandhika.vercel.app/Riandhika.webp",
+				"jobTitle": "Fullstack Developer",
+				"description": "Fullstack Developer delivering modern, end-to-end digital solutions with expertise in Node.js, React, Express, and MongoDB, building impactful digital products.",
+				"sameAs": [
+					"https://github.com/Daffariandhika",
+					"https://www.linkedin.com/in/daffariandhika/",
+					"https://www.instagram.com/riandhika.a/"
+				],
+				"worksFor": {
+					"@type": "Organization",
+					"name": "Freelance"
+				},
+				"alumniOf": {
+					"@type": "CollegeOrUniversity",
+					"name": "Gunadarma University"
+				},
+				"knowsAbout": [
+					"Fullstack Development",
+					"System Architecture",
+					"System Optimization",
+					"Code Spliting",
+					"MERN Stack",
+					"Node.js",
+					"React",
+					"MongoDB",
+					"Express.js",
+					"REST API",
+					"Web Performance",
+					"Redux",
+					"Zustand",
+					"Tailwind CSS",
+					"TypeScript",
+					"JavaScript",
+					"Python",
+					"Git",
+					"GitHub"
+				],
+				"hasPart": [
+					{
+						"@type": "SoftwareApplication",
+						"name": "Readuniverse",
+						"applicationCategory": "WebApplication",
+						"operatingSystem": "All",
+						"url": "https://read-universe.vercel.app/",
+						"description": "Gamified E-Commerce Book store"
+					}
+				]
+			}
+		</script>
 
 		<AstroFont
 			config={[
